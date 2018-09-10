@@ -10,6 +10,13 @@ edges = [
     [0,0,2,0,0,0,6,7,0]
 ]
 
+edges_2 = [
+    [0,1,1,0,0],
+    [0,0,0,0,0],
+    [0,0,0,1,0],
+    [0,1,0,0,1],
+    [0,0,0,0,0]
+]
 class Graph:
     def __init__(self,size):
         self.edges = [[0 for _ in range(size)] for _ in range(size)]
@@ -121,7 +128,7 @@ class Graph:
                     shortest_edge[dest] = cost
         print("Total MST cost: ",total_mst)
 
-    def min_spanning_tree_kruskal(self):
+    """ def min_spanning_tree_kruskal(self):
         def get_edge_weight(size,edges,source,dest):
             return edges[source*size+dest]
 
@@ -146,25 +153,31 @@ class Graph:
         num_edges_in_tree = 0
         current_sorted_id = 0
         parent = [-1]*self.size #to check for cycles
-        while num_edges_in_tree < self.size - 1:
-            
-
-
+        while num_edges_in_tree < self.size - 1: """
 
     #Cycles
     def detect_cycle_with_dfs(self):
-        visited = [False for _ in range(self.size)]
-        stack = [0]
-        visited[0] = True
-        while len(stack) > 0:
-            current_node = stack.pop()
-            for i,v in enumerate(self.edges[current_node]):
+        def helper(node,visited,active_branch):
+            visited[node] = True
+            active_branch[node] = True
+            for i,v in enumerate(self.edges[node]):
                 if v != 0 and not visited[i]:
-                    visited[i] = True
-                    stack.append(i)
-                elif v != 0 and visited[i]:
+                    if helper(i,visited,active_branch):
+                        return True
+                elif v != 0 and visited[i] and active_branch[i]:
                     return True
-        return False
+            active_branch[node] = False
+            return False
+            
+        visited = [False for _ in range(self.size)]
+        active_branch = [False for _ in range(self.size)]
+        for node in range(self.size):
+            if not visited[node]:
+                if helper(node,visited,active_branch):
+                    print("Graph has cycle")
+                    return
+        print("No graph cycle detected")
+
 
     def eulerian_circuit(self):
         pass
@@ -187,3 +200,7 @@ G.depth_first_ite()
 G.shortest_path_djikstra()
 G.shortest_path_bellmanford()
 G.min_spanning_tree_prim()
+G.detect_cycle_with_dfs()
+G2 = Graph(5)
+G2.edges = edges_2
+G2.detect_cycle_with_dfs()
