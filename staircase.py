@@ -15,13 +15,12 @@
 #
 
 # one or two steps at a time
-
 def fun1(N):
     if N < 0:
         return 0
     if N == 0:
         return 1
-    return fun1(N-1) + fun1(N-2)
+    return  fun1(N-1) + fun1(N-2)
 
 def fun2(N):
     w = [0]*(N+1)
