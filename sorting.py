@@ -39,7 +39,7 @@ def insertion_sort(arr):
 print(insertion_sort(arr))
 
 arr = [5,2,6,53,134,55,332,762,22]
-def heap_sort(arr): 
+def heap_sort(arr):
     # n - heap size
     # i - root id
     def heapify(arr,n,i):
@@ -60,7 +60,7 @@ def heap_sort(arr):
     # extract max elements
     for i in range(len(arr)-1,0,-1):
         arr[i],arr[0] = arr[0],arr[i] # swap max with last elem
-        heapify(arr,i,0) # move new elem to right spot, ignoring last elems that are already sorted
+        heapify(arr,i,0) # move new elem to right spot, ignoring first elems that are already sorted
     return arr
 
 print(heap_sort(arr))
@@ -90,23 +90,23 @@ def merge_sort(arr,l,r):
     def merge(arr,l, m, r):
         n1 = m - l + 1
         n2 = r- m
- 
+
         # create temp arrays
         L = [0] * (n1)
         R = [0] * (n2)
- 
+
         # Copy data to temp arrays L[] and R[]
         for i in range(0 , n1):
             L[i] = arr[l + i]
- 
+
         for j in range(0 , n2):
             R[j] = arr[m + 1 + j]
-        
+
         # Merge the temp arrays back into arr[l..r]
         i = 0     # Initial index of first subarray
         j = 0     # Initial index of second subarray
         k = l     # Initial index of merged subarray
- 
+
         while i < n1 and j < n2 :
             if L[i] <= R[j]:
                 arr[k] = L[i]
@@ -115,13 +115,13 @@ def merge_sort(arr,l,r):
                 arr[k] = R[j]
                 j += 1
             k += 1
-        
+
             # Copy the remaining elements of L[], if there are any
         while i < n1:
             arr[k] = L[i]
             i += 1
             k += 1
- 
+
         # Copy the remaining elements of R[], if there are any
         while j < n2:
             arr[k] = R[j]

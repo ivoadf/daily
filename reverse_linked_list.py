@@ -12,10 +12,9 @@ class LinkedListElem:
 def reverse_ll_rec(curr, prev):
     if curr is None:
         return prev
-    t = reverse_ll_rec(curr.next, curr)
+    root = reverse_ll_rec(curr.next, curr)
     curr.next = prev
-    return t
-
+    return root
 
 def reverse_ll_ite(root):
     curr = root
@@ -27,7 +26,6 @@ def reverse_ll_ite(root):
         curr = next
         next = tmp
     return curr
-
 
 
 

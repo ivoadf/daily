@@ -4,7 +4,7 @@ def smallest(a):
         if a[i] <= candidate:
             """
             At each iteration you know that it's possible to make all values
-            from 1 to candidate-1. if that is true you can make all values from
+            from 1 to candidate-1. if that is true and a[i]<=candidate you can make all values from
             1 to candidate-1+a[i].
             Ex: candidate=7 a[i]=7
             you know that all values between 1 and 6 can be achieved with sums if not candidate is incorrect
